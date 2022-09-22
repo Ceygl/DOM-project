@@ -5,13 +5,15 @@
 
 //! 1-100 arasinda rastgele bir sayi tut
 
-const randomNumber = Math.round(Math.random() * 100);
+let randomNumber = Math.round(Math.random() * 100);
 
 console.log(randomNumber);
 //? Variables
 
 let score = 10;
 let topScore = 0;
+
+
 //! checkBtn basildigindaki kontrolleri yap
 
 document.querySelector(".check-btn").addEventListener("click", ()=> {
@@ -61,3 +63,22 @@ document.querySelector(".check-btn").addEventListener("click", ()=> {
 //? if random < input.value ----- Decrease!
 //? if not ------ increase!
 //! if score >= 0 ------- sorry, you lost!
+
+//* !!!!!!!!!!!!! when again pressed, all should be updated.
+
+document.querySelector(".again-btn").addEventListener("click", () => {
+  score = 10;
+  document.querySelector(".guess-input").value = "";
+
+  document.querySelector(".score").textContent = score;
+  randomNumber = Math.round(Math.random() * 100);
+  document.querySelector(".secret-number").textContent = "?";
+  console.log(randomNumber);
+  if(document.querySelector("body").className = "bg-success"){
+    document.querySelector("body").classList.remove("bg-success")
+  }else{
+    document.querySelector("body").classList.remove("bg-danger");
+  };
+  document.querySelector(".msg").innerText = "Starting.."
+
+})
