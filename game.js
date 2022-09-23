@@ -11,7 +11,11 @@ console.log(randomNumber);
 //? Variables
 
 let score = 10;
-let topScore = 0;
+// let topScore = 0;
+
+let topScore = localStorage.getItem("topScore") || 0;
+//! DOM daki top-score degerini localStorage dan okuyarak guncelle. 
+document.querySelector(".top-score").textContent = topScore;
 
 
 //! checkBtn basildigindaki kontrolleri yap
@@ -28,8 +32,11 @@ document.querySelector(".check-btn").addEventListener("click", ()=> {
     msg.innerHTML = `Congrats, you win <i class="fa-solid fa-face-grin-hearts fa-2x"></i> `;
     body.className = "bg-success";
     if(score > topScore){
-      topScore = score;
-      document.querySelector(".top-score").textContent = topScore;
+      // topScore = score;
+      //? Local storage daki topScore u guncelle
+      localStorage.setItem("topScore", score);
+      //? DOMdaki daki top-score u guncelle
+      document.querySelector(".top-score").textContent = score;
     }
     document.querySelector(".secret-number").textContent = randomNumber;
   } 
@@ -81,4 +88,22 @@ document.querySelector(".again-btn").addEventListener("click", () => {
   };
   document.querySelector(".msg").innerText = "Starting.."
 
+});
+
+
+
+// myObj = {a:1, b:2, c:3};
+
+// localStorage.setItem("OBJ", JSON.stringify(myObj));
+
+// const readObj = localStorage.getItem("OBJ");
+// const readOBJ = JSON.parse(localStorage.getItem("OBJ"));
+// console.log(readObj);
+// console.log(typeof readObj);
+// console.log(typeof readOBJ);
+
+document.querySelector(".guess-input").addEventListener("keydown", (e) => {
+  if (e.code === "Enter"){
+    document.querySelector(".check-btn").click();
+  }
 })
